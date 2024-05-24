@@ -1,0 +1,859 @@
+{
+	"info": {
+		"_postman_id": "e3266f50-2c7d-4f5e-ac9b-b198639f5ffd",
+		"name": "notely",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24022475"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"email\": \"jalabendowicz@gmail.com\",\r\n        \"password\": \"admin\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Introspect",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGQxYmYyZDdhZjhkZTYwMjVmNTU2NSIsImlhdCI6MTcxNjQwMTQxNSwiZXhwIjoxNzE2NDg3ODE1fQ.2y42O08PTnh8TQJBZh3TqlRoHZqQhbNFEh8ppEQ-ApQ\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/introspect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"introspect"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Create one user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"firstName\": \"Jakub\",\r\n        \"lastName\": \"Łabendowicz\",\r\n        \"email\": \"jalabendowicz@gmail.com\",\r\n        \"password\": \"admin\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "me"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select many users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"firstName\": \"Jakub\",\r\n        \"lastName\": \"Łabendowicz\",\r\n        \"email\": \"jalabendowicz@gmail.com\",\r\n        \"password\": \"admin\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "664d1bf2d7af8de6025f5565"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "664d1a2d89f5c235a59c4ce0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user notes",
+			"item": [
+				{
+					"name": "Select many user notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/:userId/notes?search=Test&archived=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Test"
+								},
+								{
+									"key": "archived",
+									"value": "false"
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "me"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "Create one note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"Sztuczna inteligencja\",\r\n        \"content\": \"Sztuczna inteligencja, SI (ang. artificial intelligence, AI) – inteligencja wykazywana przez urządzenia sztuczne (w przeciwieństwie do inteligencji naturalnej). John McCarthy jest uznawany za autora tego terminu, jednak koncepcje i badania sięgają wcześniejszych lat, a wkład w rozwój SI mieli również inni pionierzy, jak Alan Turing czy Marvin Minsky. W potocznym rozumieniu jest ona często używana w kontekście „prawdziwej sztucznej inteligencji”. W informatyce i kognitywistyce oznacza także tworzenie modeli i programów symulujących choć częściowo zachowania inteligentne[1][2]. Sztuczna inteligencja jest także przedmiotem rozważań filozofii (filozofia sztucznej inteligencji) oraz przedmiotem zainteresowania nauk społecznych.Termin „sztuczna inteligencja” wymyślił John McCarthy w 1956 na konferencji w Dartmouth. Andreas Kaplan i Michael Haenlein definiują sztuczną inteligencję jako „zdolność systemu do prawidłowego interpretowania danych pochodzących z zewnętrznych źródeł, nauki na ich podstawie oraz wykorzystywania tej wiedzy, aby wykonywać określone zadania i osiągać cele poprzez elastyczne dostosowanie”[3]. Sztuczną inteligencją zajmowali się m.in. Marvin Minsky, John McCarthy, Alan Turing, Edward Feigenbaum, Raj Reddy, Judea Pearl, Allen Newell, Herbert A. Simon.Sztuczna inteligencja ma dwa podstawowe znaczenia:jest to hipotetyczna inteligencja realizowana w procesie technicznym, a nie naturalnym;jest to nazwa technologii i dziedzina badań naukowych informatyki i kognitywistyki czerpiąca także z osiągnięć psychologii, neurologii, matematyki i filozofii.Głównym zadaniem badań nad sztuczną inteligencją w drugim znaczeniu jest konstruowanie maszyn i programów komputerowych zdolnych do realizacji wybranych funkcji umysłu i ludzkich zmysłów, niepoddających się numerycznej algorytmizacji[4]. Problemy takie bywają nazywane AI-trudnymi i zalicza się do nich między innymi:podejmowanie decyzji w warunkach braku wszystkich danych,analiza i synteza języków naturalnych,rozumowanie logiczne/racjonalne,automatyczne dowodzenie twierdzeń,komputerowe gry logiczne, np. szachy, go,inteligentne roboty,systemy eksperckie i diagnostyczne.Sztuczna inteligencja jest powiązana z obszarami uczenia maszynowego, logiki rozmytej, widzenia komputerowego, obliczeń ewolucyjnych, sieci neuronowych, robotyki i sztucznego życia.Algorytmy sztucznej inteligencji często określane są mianem „czarnej skrzynki”, z powodu trudności w zrozumieniu ich działania, gdy ilość danych i parametrów jest duża. W przypadku, gdy mamy mały model, zrozumienie zasady działania nie sprawia problemu. Jednak gdy ilość danych i paremetrów się zwiększa, jest to praktycznie niemożliwe, aby zrozumieć, w jaki sposób te algorytmy podejmują decyzje[5]. Były jednak próby opracowania matemaycznej teorii, jak naprawdę działają te algorytmy (a dokładnie sieci neuronowe), z uwzględnieniem modelu GPT[6].\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select one note",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select many notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes?search=Test&archived=false&color=red",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Test"
+								},
+								{
+									"key": "archived",
+									"value": "false"
+								},
+								{
+									"key": "color",
+									"value": "red"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one note",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"title\": \"Test\",\r\n        \"color\": \"red\",\r\n        \"content\": \"Sztuczna inteligencja, SI (ang. artificial intelligence, AI) – inteligencja wykazywana przez urządzenia sztuczne (w przeciwieństwie do inteligencji naturalnej). John McCarthy jest uznawany za autora tego terminu, jednak koncepcje i badania sięgają wcześniejszych lat, a wkład w rozwój SI mieli również inni pionierzy, jak Alan Turing czy Marvin Minsky. W potocznym rozumieniu jest ona często używana w kontekście „prawdziwej sztucznej inteligencji”. W informatyce i kognitywistyce oznacza także tworzenie modeli i programów symulujących choć częściowo zachowania inteligentne[1][2]. Sztuczna inteligencja jest także przedmiotem rozważań filozofii (filozofia sztucznej inteligencji) oraz przedmiotem zainteresowania nauk społecznych.Termin „sztuczna inteligencja” wymyślił John McCarthy w 1956 na konferencji w Dartmouth. Andreas Kaplan i Michael Haenlein definiują sztuczną inteligencję jako „zdolność systemu do prawidłowego interpretowania danych pochodzących z zewnętrznych źródeł, nauki na ich podstawie oraz wykorzystywania tej wiedzy, aby wykonywać określone zadania i osiągać cele poprzez elastyczne dostosowanie”[3]. Sztuczną inteligencją zajmowali się m.in. Marvin Minsky, John McCarthy, Alan Turing, Edward Feigenbaum, Raj Reddy, Judea Pearl, Allen Newell, Herbert A. Simon.Sztuczna inteligencja ma dwa podstawowe znaczenia:jest to hipotetyczna inteligencja realizowana w procesie technicznym, a nie naturalnym;jest to nazwa technologii i dziedzina badań naukowych informatyki i kognitywistyki czerpiąca także z osiągnięć psychologii, neurologii, matematyki i filozofii.Głównym zadaniem badań nad sztuczną inteligencją w drugim znaczeniu jest konstruowanie maszyn i programów komputerowych zdolnych do realizacji wybranych funkcji umysłu i ludzkich zmysłów, niepoddających się numerycznej algorytmizacji[4]. Problemy takie bywają nazywane AI-trudnymi i zalicza się do nich między innymi:podejmowanie decyzji w warunkach braku wszystkich danych,analiza i synteza języków naturalnych,rozumowanie logiczne/racjonalne,automatyczne dowodzenie twierdzeń,komputerowe gry logiczne, np. szachy, go,inteligentne roboty,systemy eksperckie i diagnostyczne.Sztuczna inteligencja jest powiązana z obszarami uczenia maszynowego, logiki rozmytej, widzenia komputerowego, obliczeń ewolucyjnych, sieci neuronowych, robotyki i sztucznego życia.Algorytmy sztucznej inteligencji często określane są mianem „czarnej skrzynki”, z powodu trudności w zrozumieniu ich działania, gdy ilość danych i parametrów jest duża. W przypadku, gdy mamy mały model, zrozumienie zasady działania nie sprawia problemu. Jednak gdy ilość danych i paremetrów się zwiększa, jest to praktycznie niemożliwe, aby zrozumieć, w jaki sposób te algorytmy podejmują decyzje[5]. Były jednak próby opracowania matemaycznej teorii, jak naprawdę działają te algorytmy (a dokładnie sieci neuronowe), z uwzględnieniem modelu GPT[6].\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one note",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664cfa93ca82a4bdb57536d4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive one note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/archive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"archive"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unarchive one note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/unarchive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"unarchive"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Summarize one note",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/summarize",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"summarize"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ask one note",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/ask?question=Jakie jest ownerId właściciela notatki?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"ask"
+							],
+							"query": [
+								{
+									"key": "question",
+									"value": "Jakie jest ownerId właściciela notatki?"
+								}
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "note accesses",
+			"item": [
+				{
+					"name": "Create one note access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"userId\": \"664d29621973756e9e3708c2\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/accesses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"accesses"
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select one note access",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses/:noteAccessId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses",
+								":noteAccessId"
+							],
+							"variable": [
+								{
+									"key": "noteAccessId",
+									"value": "664e4e7cfffe8bd57b4d0df9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select many note accesses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/:noteId/accesses?deactivated=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								":noteId",
+								"accesses"
+							],
+							"query": [
+								{
+									"key": "deactivated",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "noteId",
+									"value": "664d42f42a019c3aeed46038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select many notes accesses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses?deactivated=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses"
+							],
+							"query": [
+								{
+									"key": "deactivated",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update one note access",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses/:noteAccessId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses",
+								":noteAccessId"
+							],
+							"variable": [
+								{
+									"key": "noteAccessId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one note access",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses/:noteAccessId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses",
+								":noteAccessId"
+							],
+							"variable": [
+								{
+									"key": "noteAccessId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate one note access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses/:noteAccessId/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses",
+								":noteAccessId",
+								"deactivate"
+							],
+							"variable": [
+								{
+									"key": "noteAccessId",
+									"value": "664e4e7cfffe8bd57b4d0df9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reactivate one note access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notes/accesses/:noteAccessId/reactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notes",
+								"accesses",
+								":noteAccessId",
+								"reactivate"
+							],
+							"variable": [
+								{
+									"key": "noteAccessId",
+									"value": "664e4e7cfffe8bd57b4d0df9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGQxYmYyZDdhZjhkZTYwMjVmNTU2NSIsImlhdCI6MTcxNjQwMTQxNSwiZXhwIjoxNzE2NDg3ODE1fQ.2y42O08PTnh8TQJBZh3TqlRoHZqQhbNFEh8ppEQ-ApQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
