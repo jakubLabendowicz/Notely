@@ -1,14 +1,15 @@
 const mongoose = require("mongoose")
 const database = () => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.DB || "mongodb://127.0.0.1:27017/notely", {
+        const dburl = process.env.DB || "mongodb://127.0.0.1:27017/notely"
+        mongoose.connect(dburl, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }).then(() => {
-            console.log('Connected to database at ' + process.env.DB);
+            console.log('Connected to database at ' + dburl);
             resolve();
         }).catch((error) => {
-            console.error('Error connecting to database at ' + process.env.DB + ' \n', error);
+            console.error('Error connecting to database at ' + dburl + ' \n', error);
             reject();
         });
     })
