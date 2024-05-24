@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const database = () => {
     return new Promise((resolve, reject) => {
-        mongoose.connect(process.env.DB, {
+        mongoose.connect(process.env.DB || "mongodb://127.0.0.1:27017/notely", {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }).then(() => {
