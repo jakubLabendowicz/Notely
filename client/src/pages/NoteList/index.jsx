@@ -95,6 +95,7 @@ const NoteList = () => {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell><b>Title</b></TableCell>
+                                        <TableCell><b>Color</b></TableCell>
                                         <TableCell><b>Content</b></TableCell>
                                         <TableCell><b>Actions</b></TableCell>
                                     </TableRow>
@@ -105,6 +106,9 @@ const NoteList = () => {
                                         key={note._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                         <TableCell component="th" scope="row">{note.title}</TableCell>
+                                        <TableCell component="th" scope="row">
+                                            <div style={{width: 25, height: 25, backgroundColor: note.color, borderRadius: 5}}/>
+                                        </TableCell>
                                         <TableCell>{note.content}</TableCell>
                                         <TableCell>
                                             <Stack direction="row">
