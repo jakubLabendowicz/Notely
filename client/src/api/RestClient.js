@@ -52,7 +52,7 @@ export class RestClient {
 
     async put(url, data) {
         return new Promise((resolve, reject) => {
-            this.client.put(url, data)
+            this.client.put(url, {data: data})
             .then((response) => {
                 new Notification(response.data.result.message, response.data.result.type).send();
                 resolve(response.data);

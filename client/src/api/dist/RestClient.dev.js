@@ -127,7 +127,9 @@ function () {
           switch (_context3.prev = _context3.next) {
             case 0:
               return _context3.abrupt("return", new Promise(function (resolve, reject) {
-                _this3.client.put(url, data).then(function (response) {
+                _this3.client.put(url, {
+                  data: data
+                }).then(function (response) {
                   new _NotificationUtils["default"](response.data.result.message, response.data.result.type).send();
                   resolve(response.data);
                 })["catch"](function (error) {

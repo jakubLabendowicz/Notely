@@ -18,7 +18,7 @@ import PageHeaderIcon from '../../components/PageHeaderIcon';
 import NoToDi from '../../components/NoToDi';
 import { selectManyUsers } from '../../api/Api';
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
+import { Breadcrumbs, IconButton, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -39,6 +39,12 @@ const UserList = () => {
             <Page>
                 <PageHeader
                     backAddress={'/'}
+                    breadcrumbs={
+                        <Breadcrumbs aria-label="breadcrumb">
+                            <Link to={"/"}>Home</Link>
+                            <Typography color="text.primary">Users</Typography>
+                        </Breadcrumbs>
+                    }
                     icon= {
                         <PageHeaderIcon>
                             <Stack direction="row" alignItems="center" spacing={1}>

@@ -18,7 +18,7 @@ import PageHeaderTitle from '../../components/PageHeaderTitle';
 import PageHeaderSubtitle from '../../components/PageHeaderSubtitle';
 import PageHeaderIcon from '../../components/PageHeaderIcon';
 import { archiveOneNote, selectOneNote, summarizeOneNote, unarchiveOneNote } from '../../api/Api';
-import { IconButton } from '@mui/material';
+import { Breadcrumbs, IconButton, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -52,6 +52,13 @@ const UserView = () => {
             <Page>
                 <PageHeader
                     backAddress={'/notes'}
+                    breadcrumbs={
+                        <Breadcrumbs aria-label="breadcrumb">
+                            <Link to={"/"}>Home</Link>
+                            <Link to={"/notes"}>Notes</Link>
+                            <Typography color="text.primary">{note.title}</Typography>
+                        </Breadcrumbs>
+                    }
                     icon= {
                         <PageHeaderIcon color={note.color}>
                             <Stack direction="row" alignItems="center" spacing={1}>
@@ -62,9 +69,6 @@ const UserView = () => {
                     title = {
                         <PageHeaderTitle title={note.title}></PageHeaderTitle>
                     }
-                    subtitle = {
-                        <PageHeaderSubtitle subtitle="View"></PageHeaderSubtitle>
-                    } 
                     secondaryActions = {
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <Link to={'/notes/' + note._id + '/edit'}>

@@ -18,7 +18,7 @@ import PageHeaderTitle from '../../components/PageHeaderTitle';
 import PageHeaderSubtitle from '../../components/PageHeaderSubtitle';
 import PageHeaderIcon from '../../components/PageHeaderIcon';
 import { selectOneUser } from '../../api/Api';
-import { IconButton } from '@mui/material';
+import { Breadcrumbs, IconButton, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -45,6 +45,13 @@ const UserView = () => {
             <Page>
                 <PageHeader
                     backAddress={'/users'}
+                    breadcrumbs={
+                        <Breadcrumbs aria-label="breadcrumb">
+                            <Link to={"/"}>Home</Link>
+                            <Link to={"/users"}>Users</Link>
+                            <Typography color="text.primary">{user.firstName + " " + user.lastName}</Typography>
+                        </Breadcrumbs>
+                    }
                     icon= {
                         <PageHeaderIcon>
                             <Stack direction="row" alignItems="center" spacing={1}>

@@ -18,7 +18,7 @@ import PageHeaderIcon from '../../components/PageHeaderIcon';
 import NoToDi from '../../components/NoToDi';
 import { archiveOneNote, selectManyNotes, unarchiveOneNote } from '../../api/Api';
 import { Link } from 'react-router-dom';
-import { IconButton } from '@mui/material';
+import { Breadcrumbs, IconButton, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -32,11 +32,11 @@ const NoteList = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const search = searchParams.get('search') || '';
     const archived = searchParams.get('archived') || 'false';
-
+    const color = searchParams.get('color') || '';
     const [notes, setNotes] = React.useState([])
 
     const getNotes = () => {
-        selectManyNotes('?search=' + search + '&archived=' + archived + '').then((response) => {
+        selectManyNotes('?search=' + search + '&archived=' + archived + '' + '&color=' + color).then((response) => {
             setNotes(response.data)
         }).catch((error) => {
             console.log(error)
@@ -52,6 +52,15 @@ const NoteList = () => {
             <Page>
                 <PageHeader
                     backAddress={'/'}
+                    breadcrumbs={
+                        <Breadcrumbs aria-label="breadcrumb">
+                            <Link to={"/"}>Home</Link>
+                            <Typography color="text.primary">Notes</Typography>
+                            {archived === 'true' && <Typography color="text.primary">Archived</Typography>}
+                            {color !== '' && <Typography color="text.primary">{color}</Typography>}
+                            {search !== '' && <Typography color="text.primary">{search}</Typography>}
+                        </Breadcrumbs>
+                    }
                     icon= {
                         <PageHeaderIcon>
                             <Stack direction="row" alignItems="center" spacing={1}>
