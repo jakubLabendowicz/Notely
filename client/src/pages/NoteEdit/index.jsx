@@ -38,7 +38,7 @@ const UserView = () => {
         <>
             <Page>
                 <PageHeader
-                    backAddress={'/notes'}
+                    backAddress={'/notes/' + noteId}
                     icon= {
                         <PageHeaderIcon>
                             <Stack direction="row" alignItems="center" spacing={1}>
