@@ -1,49 +1,53 @@
 import { Route, Routes, Navigate } from "react-router-dom"
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-import Signup from "./pages/Signup"
-import Login from "./pages/Login"
-import Main from "./pages/Main"
-import Tracks from "./pages/Tracks"
-import Track from "./pages/Track"
-import Favorites from "./pages/Favorites"
-import Me from "./pages/Me";
-import Group from "./pages/Group";
-
+import LogUserLogin from "./pages/UserLogin"
+import UserCreate from "./pages/UserCreate"
+import UserList from "./pages/UserList";
+import UserView from "./pages/UserView";
+import UserEdit from "./pages/UserEdit";
+import UserDelete from "./pages/UserDelete";
+import NoteCreate from "./pages/NoteCreate";
+import NoteList from "./pages/NoteList";
+import NoteView from "./pages/NoteView";
+import NoteEdit from "./pages/NoteEdit";
+import NoteDelete from "./pages/NoteDelete";
 
 function App() {
-  const user = localStorage.getItem("token")
-  const theme = createTheme({
-    palette: {
-      primary: {
-        light: '#1f1f1f',
-        main: '#1ED760',
-        dark: '#002884',
-        contrastText: '#fff',
-      },
-      secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
-      },
-    },
-  });
+  const token = localStorage.getItem("token")
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Routes>
-        {user && <Route path="/" element={<Navigate replace to="/tracks" />} />}
-        {user && <Route path="/tracks" exact element={<Tracks />} />}
-        {user && <Route path="/tracks/:trackId" exact element={<Track />} />}
-        {user && <Route path="/users/self/favorites/all/tracks" exact element={<Favorites/>} />}
-        {user && <Route path="/users/self" exact element={<Me/>} />}
-        {user && <Route path="/users" exact element={<Group />} />}
-        <Route path="/signup" exact element={<Signup />} />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/" element={<Navigate replace to="/login" />} />
+          {!token && <Route path="/login" exact element={<LogUserLogin />} />}
+          {!token && <Route path="/users/create" exact element={<UserCreate />} />}
+          {token && <Route path="/users" exact element={<UserList />} />}
+          {token && <Route path="/users/:userId" exact element={<UserView />} />}
+          {token && <Route path="/users/:userId/edit" element={<UserEdit />} />}
+          {token && <Route path="/users/:userId/delete" element={<UserDelete />} />}
+
+          {token && <Route path="/notes/create" element={<NoteCreate />} />}
+          {token && <Route path="/notes" element={<NoteList />} />}
+          {token && <Route path="/notes/:noteId" element={<NoteView />} />}
+          {token && <Route path="/notes/:noteId/edit" element={<NoteEdit />} />}
+          {token && <Route path="/notes/:noteId/delete" element={<NoteDelete />} />}
+          
+          {!token && <Route path="/" element={<Navigate replace to="/login" />} />}    
+          {token && <Route path="/" element={<Navigate replace to="/notes" />} />}
       </Routes>
-    </ThemeProvider>
+      <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+    </>
   )
 }
 export default App

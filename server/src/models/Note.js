@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 const noteSchema = new Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
-    color: { type: String, required: false },
+    color: { type: String, required: false, default: "white" },
 
     ownerId: { type: String, required: true },
 

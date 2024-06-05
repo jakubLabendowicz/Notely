@@ -9,7 +9,7 @@ const verifyUser = async (req, res, next) => {
         if(!req.headers.authorization) throw new UnauthorizedError("Authorization header is required");
         const token = req.headers.authorization.split(" ")[1];
         if(!token) throw new UnauthorizedError("Token is required");
-        const tokenData = jwt.verify(token, process.env.JWT_SECRET);
+        const tokenData = jwt.verify(token, process.env.JWT_SECRET || "secret");
         if(!tokenData) throw new UnauthorizedError("Invalid token");
         const user = await User.findById(tokenData.id);
         if(!user) throw new NotFoundError("User not found");

@@ -1,13 +1,13 @@
-.login_container {
-	width: 100%;
-	min-height: 100vh;
+.signup_container {
+	width: calc(100% - 64px);
+	min-height: calc(100vh - 128px);
 	background-color: #ffffff;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.login_form_container {
+.signup_form_container {
 	width: 900px;
 	height: 500px;
 	display: flex;
@@ -17,14 +17,33 @@
 }
 
 .left {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #ffb300;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.left h1 {
+	margin-top: 0;
+	color: white;
+	font-size: 35px;
+	align-self: center;
+	text-align: center;
+}
+
+.right {
 	flex: 2;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	background-color: white;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .form_container {
@@ -60,24 +79,6 @@
 	text-align: center;
 }
 
-.right {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: #1ED760;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
-.right h1 {
-	margin-top: 0;
-	color: white;
-	font-size: 40px;
-	align-self: center;
-}
-
 .white_btn,
 .green_btn {
 	border: none;
@@ -92,7 +93,7 @@
 }
 
 .green_btn {
-	background-color: #1ED760;
+	background-color: #ffb300;
 	color: white;
 	margin: 10px;
 }

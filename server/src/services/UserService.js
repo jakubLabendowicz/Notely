@@ -6,7 +6,7 @@ const createUser = async (req, res, next) => {
     try {
         if(!req.body.data.email) throw new BadRequestError("Email is required")
         if(!req.body.data.password) throw new BadRequestError("Password is required")
-        const findedUser = await User.findOne({ email: req.body.email })
+        const findedUser = await User.findOne({ email: req.body.data.email })
         if (findedUser) throw new ConflictError("User already exists")
         const salt = await bcrypt.genSalt(Number(process.env.SALT) || 10)
         if(!salt) throw new InternalServerError("Salt not generated")

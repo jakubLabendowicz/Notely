@@ -1,22 +1,26 @@
 import { useState } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styles from "./styles.module.css"
-
-const Login = () => {
-    const [data, setData] = useState({ email: "", password: "" })
+const UserCreate = () => {
+    const [data, setData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+    })
     const [error, setError] = useState("")
+    const navigate = useNavigate()
     const handleChange = ({ currentTarget: input }) => {
         setData({ ...data, [input.name]: input.value })
-    };
+    }
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const url = "http://localhost:8080/api/auth"
-            const { data: res } = await axios.post(url, data)
-            localStorage.setItem("token", res.data)
-            localStorage.setItem("userId", res.user._id)
-            window.location = "/"
+            const url = "http://localhost:8080/api/v1/users"
+            const { data: res } = await axios.post(url, {data: data})
+            navigate("/login")
+            console.log(res.message)
         } catch (error) {
             if (
                 error.response &&
@@ -28,12 +32,39 @@ const Login = () => {
         }
     }
     return (
-        <div className={styles.login_container}>
-            <div className={styles.login_form_container}>
+        <div className={styles.signup_container}>
+            <div className={styles.signup_form_container}>
                 <div className={styles.left}>
+                    <h1>Witaj z powrotem</h1>
+                    <Link to="/login">
+                        <button type="button"
+                            className={styles.white_btn}>
+                            Zaloguj się
+                        </button>
+                    </Link>
+                </div>
+                <div className={styles.right}>
                     <form className={styles.form_container}
                         onSubmit={handleSubmit}>
-                        <h1>Logowanie</h1>
+                        <h1>Zakładanie konta</h1>
+                        <input
+                            type="text"
+                            placeholder="Imię"
+                            name="firstName"
+                            onChange={handleChange}
+                            value={data.firstName}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Nazwisko"
+                            name="lastName"
+                            onChange={handleChange}
+                            value={data.lastName}
+                            required
+                            className={styles.input}
+                        />
                         <input
                             type="email"
                             placeholder="Email"
@@ -56,21 +87,12 @@ const Login = () => {
                             className={styles.error_msg}>{error}</div>}
                         <button type="submit"
                             className={styles.green_btn}>
-                            Zaloguj się
+                            Załóż konto
                         </button>
                     </form>
                 </div>
-                <div className={styles.right}>
-                    <h1>New Here ?</h1>
-                    <Link to="/signup">
-                        <button type="button"
-                            className={styles.white_btn}>
-                            Sing Up
-                        </button>
-                    </Link>
-                </div>
             </div>
         </div>
-    )
-}
-export default Login;
+    );
+};
+export default UserCreate
