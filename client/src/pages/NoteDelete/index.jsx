@@ -41,7 +41,7 @@ const UserView = () => {
                 <PageHeader
                     backAddress={'/notes'}
                     icon= {
-                        <PageHeaderIcon>
+                        <PageHeaderIcon color={note.color}>
                             <Stack direction="row" alignItems="center" spacing={1}>
                                 <NotesIcon size="large"/>
                             </Stack>
