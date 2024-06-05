@@ -146,9 +146,9 @@ export const selectOneNote = async (noteId) => {
     });
 }
 
-export const selectManyNotes = async () => {
+export const selectManyNotes = async (filters='') => {
     return new Promise((resolve, reject) => {
-        client.get('/notes')
+        client.get('/notes'+filters)
         .then((response) => {
             resolve(response);
         })

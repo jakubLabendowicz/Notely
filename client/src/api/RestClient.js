@@ -16,7 +16,9 @@ export class RestClient {
                 resolve(response.data);
             })
             .catch((error) => {
-                if (error.response.data.result) {
+                if (error.response.data.result.status === 404) {
+                    resolve({data: []});
+                } else if (error.response.data.result) {
                     new Notification(error.response.data.result.message, error.response.data.result.type).send();
                     reject(error.response.data.result);
                 } else {

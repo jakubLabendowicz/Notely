@@ -38,16 +38,20 @@ const selectNotes = async (req, res, next) => {
         const color = req.query.color || '';
         if (req.body.user.role !== "admin") {
             notes = await Note.find({
-                $or: [{ title: { $regex: search, $options: 'i' } }, { content: { $regex: search, $options: 'i' } }],
-                isArchived: archived,
-                color: { $regex: color, $options: 'i' },
-                $or: [{ _id: { $in: noteIds } }, { ownerId: userId }],
+                $and: [
+                    {$or: [{ title: { $regex: search} }, { content: { $regex: search} }]},
+                    {isArchived: archived},
+                    {color: { $regex: color, $options: 'i' }},
+                    {$or: [{ _id: { $in: noteIds } }, { ownerId: userId }]},
+                ],
             })
         } else {
             notes = await Note.find({
-                $or: [{ title: { $regex: search, $options: 'i' } }, { content: { $regex: search, $options: 'i' } }],
-                isArchived: archived,
-                color: { $regex: color, $options: 'i' }
+                $and: [
+                    {$or: [{ title: { $regex: search} }, { content: { $regex: search} }]},
+                    {isArchived: archived},
+                    {color: { $regex: color, $options: 'i' }},
+                ],
             })
         }
         if (!notes || notes.length === 0) throw new NotFoundError("Notes not found")

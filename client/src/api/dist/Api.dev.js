@@ -271,19 +271,22 @@ var selectOneNote = function selectOneNote(noteId) {
 exports.selectOneNote = selectOneNote;
 
 var selectManyNotes = function selectManyNotes() {
+  var filters,
+      _args12 = arguments;
   return regeneratorRuntime.async(function selectManyNotes$(_context12) {
     while (1) {
       switch (_context12.prev = _context12.next) {
         case 0:
+          filters = _args12.length > 0 && _args12[0] !== undefined ? _args12[0] : '';
           return _context12.abrupt("return", new Promise(function (resolve, reject) {
-            client.get('/notes').then(function (response) {
+            client.get('/notes' + filters).then(function (response) {
               resolve(response);
             })["catch"](function (error) {
               reject(error);
             });
           }));
 
-        case 1:
+        case 2:
         case "end":
           return _context12.stop();
       }

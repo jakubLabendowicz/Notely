@@ -60,7 +60,11 @@ function () {
                 _this.client.get(url).then(function (response) {
                   resolve(response.data);
                 })["catch"](function (error) {
-                  if (error.response.data.result) {
+                  if (error.response.data.result.status === 404) {
+                    resolve({
+                      data: []
+                    });
+                  } else if (error.response.data.result) {
                     new _NotificationUtils["default"](error.response.data.result.message, error.response.data.result.type).send();
                     reject(error.response.data.result);
                   } else {

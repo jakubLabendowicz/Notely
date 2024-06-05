@@ -16,7 +16,7 @@ import PageHeaderTitle from '../../components/PageHeaderTitle';
 import PageHeaderSubtitle from '../../components/PageHeaderSubtitle';
 import PageHeaderIcon from '../../components/PageHeaderIcon';
 import NoToDi from '../../components/NoToDi';
-import { selectManyNotes } from '../../api/Api';
+import { archiveOneNote, selectManyNotes, unarchiveOneNote } from '../../api/Api';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -25,16 +25,26 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import NotesIcon from '@mui/icons-material/Notes';
 import CreateIcon from '@mui/icons-material/Create';
 import AddIcon from '@mui/icons-material/Add';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import UnarchiveIcon from '@mui/icons-material/Unarchive';
 
 const NoteList = () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const search = searchParams.get('search') || '';
+    const archived = searchParams.get('archived') || 'false';
+
     const [notes, setNotes] = React.useState([])
 
-    React.useEffect(() => {
-        selectManyNotes().then((response) => {
+    const getNotes = () => {
+        selectManyNotes('?search=' + search + '&archived=' + archived + '').then((response) => {
             setNotes(response.data)
         }).catch((error) => {
             console.log(error)
         })
+    }
+
+    React.useEffect(() => {
+        getNotes()
     }, []);
 
     return (
@@ -50,13 +60,27 @@ const NoteList = () => {
                         </PageHeaderIcon>
                     }
                     title = {
-                        <PageHeaderTitle title={"Notes"}></PageHeaderTitle>
+                        <PageHeaderTitle title={archived === 'true' ? "Archived Notes" : "Notes"}></PageHeaderTitle>
                     }
                     subtitle = {
                         <PageHeaderSubtitle subtitle={"List: " + notes.length}></PageHeaderSubtitle>
                     }
                     secondaryActions = {
                         <Stack direction="row" alignItems="center" spacing={1}>
+                            {archived === 'false' && 
+                                <Link to={'/notes?archived=true'} onClick={() => window.location = '/notes?archived=true'}>
+                                    <IconButton aria-label="star" size="small">
+                                        <ArchiveIcon />
+                                    </IconButton>
+                                </Link>
+                            }
+                            {archived === 'true' && 
+                                <Link to={'/notes?archived=false'} onClick={() => window.location = '/notes?archived=false'}>
+                                    <IconButton aria-label="star" size="small">
+                                        <UnarchiveIcon />
+                                    </IconButton>
+                                </Link>
+                            }
                             <Link to={'/notes/create'}>
                                 <IconButton aria-label="star" size="small">
                                     <AddIcon />
@@ -94,6 +118,19 @@ const NoteList = () => {
                                                         <EditIcon />
                                                     </IconButton>
                                                 </Link>
+                                                {note.isArchived ? 
+                                                    <div onClick={()=>{unarchiveOneNote(note._id).then(()=>{getNotes()})}}>
+                                                        <IconButton aria-label="star" size="small">
+                                                            <UnarchiveIcon />
+                                                        </IconButton>
+                                                    </div>
+                                                :
+                                                    <div onClick={()=>{archiveOneNote(note._id).then(()=>{getNotes()})}}>
+                                                        <IconButton aria-label="star" size="small">
+                                                            <ArchiveIcon />
+                                                        </IconButton>
+                                                    </div>
+                                                }
                                                 <Link to={'/notes/' + note._id + '/delete'}>
                                                     <IconButton aria-label="star" size="small">
                                                         <DeleteIcon />
