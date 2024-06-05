@@ -56,9 +56,6 @@ const UserView = () => {
                     title = {
                         <PageHeaderTitle title={user.firstName + " " + user.lastName}></PageHeaderTitle>
                     }
-                    subtitle = {
-                        <PageHeaderSubtitle subtitle="Edit"></PageHeaderSubtitle>
-                    }
                     secondaryActions = {
                         <Stack direction="row" alignItems="center" spacing={1}>
                             

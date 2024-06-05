@@ -56,7 +56,7 @@ const UserList = () => {
                         <PageHeaderTitle title={"Users"}></PageHeaderTitle>
                     }
                     subtitle = {
-                        <PageHeaderSubtitle subtitle={"List: " + users.length}></PageHeaderSubtitle>
+                        <PageHeaderSubtitle subtitle={"Total: " + users.length}></PageHeaderSubtitle>
                     }/>
                 <PageBody>
                     {users.length === 0 ? <NoToDi /> :

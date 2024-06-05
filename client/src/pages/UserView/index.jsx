@@ -62,9 +62,6 @@ const UserView = () => {
                     title = {
                         <PageHeaderTitle title={user.firstName + " " + user.lastName}></PageHeaderTitle>
                     }
-                    subtitle = {
-                        <PageHeaderSubtitle subtitle="View"></PageHeaderSubtitle>
-                    } 
                     secondaryActions = {
                         <Stack direction="row" alignItems="center" spacing={1}>
                             {me._id === user._id ?

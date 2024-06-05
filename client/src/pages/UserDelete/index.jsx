@@ -55,9 +55,6 @@ const UserView = () => {
                     }
                     title = {
                         <PageHeaderTitle title={user.firstName + " " + user.lastName}></PageHeaderTitle>
-                    }
-                    subtitle = {
-                        <PageHeaderSubtitle subtitle="Delete"></PageHeaderSubtitle>
                     }/>
                 <PageBody>
                     <TableContainer component={Paper}>
